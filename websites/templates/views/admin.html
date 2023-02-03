@@ -70,18 +70,25 @@
         </div>
         <div class="modal-body">
           <form>
+
             <div class="form-outline mb-2">
               <input type="text" id="nama" class="form-control">
               <label class="form-label" for="nama">Nama</label>
             </div>
-            <div class="form-outline mb-2">
-              <input type="text" id="golongan" class="form-control">
-              <label class="form-label" for="golongan">Golongan</label>
+
+            <div class="form-group mb-2">
+              <select class="custom-select form-control" id="golongan">
+                <option value="" disable selected>Pilih Golongan</option>
+                <option value="orang-kaya">Orang Kadya</option>
+                <option value="orang-miskin">Orang Miskin</option>
+              </select>
             </div>
+
             <div class="form-outline mb-2">
               <input type="number" id="typeNumber" class="form-control" />
               <label class="form-label" for="typeNumber">Bulan</label>
             </div>
+            
           </form>
         </div>
         <div class="modal-footer">
