@@ -1,6 +1,8 @@
 {% extends 'views/templates/base.html' %}
 
 {% block link %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 <!-- Google Fonts -->
@@ -12,6 +14,9 @@
 
 {% block body %}
 <div class="container">
+
+  <div class="center">
+
   <div class="hidden-left card mt-4 gradient-custom " style="border-radius: 25px;">
     <div class="card-body p-4 ">
 
@@ -38,7 +43,7 @@
           <tbody class="table-striped">
             <tr class="text-break">
               <td>XASFSA</td>
-              <td>Jhon Pablo decrapio</td>
+              <td>Jhon Pablo decrapio mamaia lezato</td>
               <td>Orang kaya</td>
               <td>13</td>
               <td>1 liter</td>
@@ -50,36 +55,39 @@
         </table>
       </div>
 
-      <div class="modal fade" id="tambah-pelanggan" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggan</h5>
-              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+
+    </div>
+  </div> 
+  
+  </div>
+
+  <div class="modal fade" id="tambah-pelanggan" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggan</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-outline mb-2">
+              <input type="text" id="nama" class="form-control">
+              <label class="form-label" for="nama">Nama</label>
             </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-outline mb-2">
-                  <input type="text" id="nama" class="form-control">
-                  <label class="form-label" for="nama">Nama</label>
-                </div>
-                <div class="form-outline mb-2">
-                  <input type="text" id="golongan" class="form-control">
-                  <label class="form-label" for="golongan">Golongan</label>
-                </div>
-                <div class="form-outline mb-2">
-                  <input type="number" id="typeNumber" class="form-control" />
-                  <label class="form-label" for="typeNumber">Bulan</label>
-                </div>
-              </form>
+            <div class="form-outline mb-2">
+              <input type="text" id="golongan" class="form-control">
+              <label class="form-label" for="golongan">Golongan</label>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Tambahkan</button>
+            <div class="form-outline mb-2">
+              <input type="number" id="typeNumber" class="form-control" />
+              <label class="form-label" for="typeNumber">Bulan</label>
             </div>
-          </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Tambahkan</button>
         </div>
       </div>
-
     </div>
   </div>
 </div>

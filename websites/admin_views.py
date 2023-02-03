@@ -6,3 +6,7 @@ admin_views = Blueprint('admin_views', __name__)
 @admin_views.route('/admin', methods=['POST', 'GET'])
 def dashboard():
     return render_template('views/admin.html')
+
+@admin_views.route('/', methods=['GET'])
+def index():
+    return render_template('views/index.html')
