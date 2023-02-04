@@ -17,7 +17,11 @@ def dashboard():
 
     return render_template('views/admin.html', users = user.get_user())
 
+@admin_views.route('/admin/delete/<id>', methods=['GET'])
+def delete_user(id):
+    user.delete_user(id)
+    return redirect(url_for('admin_views.dashboard'))
+
 @admin_views.route('/', methods=['GET'])
 def index():
-
     return render_template('views/index.html', users = user.get_user())

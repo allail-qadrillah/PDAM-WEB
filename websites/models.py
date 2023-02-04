@@ -60,9 +60,11 @@ class User(Firebase):
       data = firestore.collection(self.user).get()
       return [ each.to_dict() for each in data]
 
+    def delete_user(self, id):
+      return firestore.collection(self.user).document(id).delete()
     def __str__(self) -> str:
       return f'{self.username} {self.golongan} {self.bulan}'
 
 # user = User()
 
-# print( user.get_user() )
+# user.delete_user('KEAPF')
