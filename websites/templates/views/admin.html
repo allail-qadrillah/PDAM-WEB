@@ -38,7 +38,7 @@
                 <th>Total Pembayaran</th>
                 <th>Debit Pelanggan</th>
                 <th>Total Pembayaran</th>
-                <th>Action</th>
+                <th>Hapus User</th>
               </tr>
             </thead>
             <tbody class="table-striped">
@@ -48,10 +48,10 @@
                 <td>{{ user['nama'] }}</td>
                 <td>{{ user['golongan'] }}</td>
                 <td>{{ user['bulan'] }}</td>
-                <td>1 liter</td>
-                <td>10.000</td>
-                <td>0.9 liter</td>
-                <td>9.000</td>
+                <td>{{ user['debit_pdam'] }}</td>
+                <td>{{ user['pembayaran_pdam'] }}</td>
+                <td>{{ user['debit_pelanggan'] }} </td>
+                <td>{{ user['pembayaran_pelanggan'] }}</td>
                 <td>
                   <a href="/admin/delete/{{ user['id_pelanggan'] }}" class="btn btn-sm btn-danger btn-rounded"
                     onclick="return confirm('Are You Sure To Delete?')">
@@ -88,13 +88,13 @@
             <div class="form-group mb-2">
               <select name="golongan" class="custom-select form-control" id="golongan">
                 <option value="" disable selected>Pilih Golongan</option>
-                <option value="orang-kaya">Rumah Tangga A</option>
-                <option value="orang-kaya">Rumah Tangga B</option>
-                <option value="orang-kaya">Rumah Tangga C</option>
-                <option value="orang-kaya">Rumah Tangga D</option>
-                <option value="orang-kaya">Niaga Kecil</option>
-                <option value="orang-kaya">Niaga Menengah</option>
-                <option value="orang-kaya">Niaga Besar</option>
+                <option value="Rumah Tangga A">Rumah Tangga A</option>
+                <option value="Rumah Tangga B">Rumah Tangga B</option>
+                <option value="Rumah Tangga C">Rumah Tangga C</option>
+                <option value="Rumah Tangga D">Rumah Tangga D</option>
+                <option value="Niaga Kecil">Niaga Kecil</option>
+                <option value="Niaga Menengah">Niaga Menengah</option>
+                <option value="Niaga Besar">Niaga Besar</option>
               </select>
             </div>
 

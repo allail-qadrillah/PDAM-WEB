@@ -18,8 +18,7 @@ cred = credentials.Certificate(
     }
 )
 firebase_admin.initialize_app(cred, {
-    'storageBucket': ' ',
-    'databaseURL': ' '
+    'databaseURL': 'https://web-pdam-default-rtdb.asia-southeast1.firebasedatabase.app'
 })
 
 firestore = firestore.client()
@@ -27,44 +26,138 @@ firestore = firestore.client()
 
 class Firebase:
 
-  def add_collection(self, collection, document, data):
-    return firestore.collection(collection).document(document).set(data)
+    def add_collection(self, collection, document, data):
+        return firestore.collection(collection).document(document).set(data)
 
 
 class User(Firebase):
     def __init__(self):
-      self.user = 'user'
-      self.username = str()
-      self.golongan = str()
-      self.bulan    = int()
+        self.user = 'user'
+        self.username = str()
+        self.golongan = str()
+        self.bulan = int()
+
 
     def random_string(self, string_length=5):
-      letters = string.ascii_letters
-      return ''.join(random.choice(letters) for i in range(string_length))
+        letters = string.ascii_letters
+        return ''.join(random.choice(letters) for i in range(string_length))
+
 
     def add_user(self):
-      kode_pelanggan = self.random_string().upper()
-      return self.add_collection(self.user, kode_pelanggan, {
-          'nama': self.username,
-          'golongan': self.golongan,
-          'bulan' : self.bulan,
-          'foto_profile': f"https://mdbootstrap.com/img/new/avatars/{random.randint(0, 25)}.jpg",
-          "id_pelanggan" : kode_pelanggan
-      })
-    
-    def get_user(self, kode_pelangan = ''):
-      if kode_pelangan != '':
-        data = firestore.collection(self.user).document(kode_pelangan).get()
-        return data.to_dict()
+        kode_pelanggan = self.random_string().upper()
+        return self.add_collection(self.user, kode_pelanggan, {
+            'nama': self.username,
+            'golongan': self.golongan,
+            'bulan': self.bulan,
+            'foto_profile': f"https://mdbootstrap.com/img/new/avatars/{random.randint(0, 25)}.jpg",
+            "id_pelanggan": kode_pelanggan,
+            'debit_pdam': 0,
+            'pembayaran_pdam': 0,
+            'debit_pelanggan': 0,
+            'pembayaran_pelanggan': 0
+        })
 
-      data = firestore.collection(self.user).get()
-      return [ each.to_dict() for each in data]
+
+    def get_user(self, kode_pelangan=''):
+        if kode_pelangan != '':
+            data = firestore.collection(
+                self.user).document(kode_pelangan).get()
+            return data.to_dict()
+
+        data = firestore.collection(self.user).get()
+        return [each.to_dict() for each in data]
+    
+
+    def update_user(self, kode_pelanggan, data):
+        firestore.collection(self.user).document(kode_pelanggan).update(data)
+
+
+    # def get_kode_pelanggan(self):
+    #   data = firestore.collection(self.user).get()
+    #   return [each.to_dict()['id_pelanggan'] for each in data]
+
+
+    def get_golongan(self, kode_pelanggan):
+        user = self.get_user(kode_pelanggan)
+        return user['golongan']
+
 
     def delete_user(self, id):
-      return firestore.collection(self.user).document(id).delete()
+        return firestore.collection(self.user).document(id).delete()
+
+
+    def get_pdam(self):
+        return db.reference('/pdam').get()
+
+
+    def get_pelanggan(self):
+        return db.reference('/pelanggan').get()
+
+
+    def get_pembayaran_pdam(self, kode_pelanggan):
+        volume_air = self.get_pdam()
+        golongan = self.get_golongan(kode_pelanggan)
+
+        return "{:.3f}".format(self.count_pembayaran(golongan, volume_air))
+    
+
+    def get_pembayaran_pelanggan(self, kode_pelanggan):
+        volume_air = self.get_pelanggan()
+        golongan = self.get_golongan(kode_pelanggan)
+
+        return "{:.3f}".format(self.count_pembayaran(golongan, volume_air))
+
+
+    def count_pembayaran(self, golongan, volume_air):
+        if golongan == "Rumah Tangga A":
+              if volume_air >= 0 and volume_air <= 10:
+                  return (volume_air * 2.500) + 4.500 + 3.000
+              else:
+                  return (volume_air * 3.500) + 4.500 + 3.000
+
+        elif golongan == "Rumah Tangga B":
+            if volume_air >= 0 and volume_air <= 10:
+                return (volume_air * 3.000 ) + 4.500 + 3.000
+            else:
+                return (volume_air * 3.850) + 4.500 + 3.000
+
+        elif golongan == "Rumah Tangga C":
+            if volume_air >= 0 and volume_air <= 10:
+                return (volume_air * 3.250 ) + 4.500 + 3.000
+            else:
+                return (volume_air * 4.200) + 4.500 + 3.000
+
+        elif golongan == "Rumah Tangga D":
+            if volume_air >= 0 and volume_air <= 10:
+                return (volume_air * 3.500 ) + 4.500 + 3.000
+            else:
+                return (volume_air * 4.550) + 4.500 + 3.000
+
+        elif golongan == "Niaga Kecil":
+            if volume_air >= 0 and volume_air <= 10:
+                return (volume_air * 3.500 ) + 4.500 + 3.000
+            else:
+                return (volume_air * 6.300) + 4.500 + 3.000
+
+        elif golongan == "Niaga Menengah":
+            if volume_air >= 0 and volume_air <= 10:
+                return (volume_air * 3.850 ) + 4.500 + 3.000
+            else:
+                return (volume_air * 6.650) + 4.500 + 3.000
+
+        elif golongan == "Niaga Besar":
+            if volume_air >= 0 and volume_air <= 10:
+                return (volume_air * 4.200 ) + 4.500 + 3.000
+            else:
+                return (volume_air * 7.000) + 4.500 + 3.000
+
+
     def __str__(self) -> str:
-      return f'{self.username} {self.golongan} {self.bulan}'
+        return f'{self.username} {self.golongan} {self.bulan}'
 
-# user = User()
 
-# user.delete_user('KEAPF')
+
+
+
+
+
