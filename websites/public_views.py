@@ -9,6 +9,6 @@ user = User()
 def dashboard(id_pelanggan):
     try:
         pelanggan = user.get_user(kode_pelangan=id_pelanggan)
-        return render_template('views/public.html', user = pelanggan)
+        return render_template('views/user.html', user = pelanggan)
     except:
         return "<h1>User Tidak Ditemukan 💀</h1>", 404
