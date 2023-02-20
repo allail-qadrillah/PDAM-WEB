@@ -48,10 +48,10 @@
                 <td>{{ user['nama'] }}</td>
                 <td>{{ user['golongan'] }}</td>
                 <td>{{ user['bulan'] }}</td>
-                <td>{{ user['debit_pdam'] }}</td>
-                <td>{{ user['pembayaran_pdam'] }}</td>
-                <td>{{ user['debit_pelanggan'] }} </td>
-                <td>{{ user['pembayaran_pelanggan'] }}</td>
+                <td class="nowrap">{{ user['debit_pdam'] }} m<sup>3</sup></td>
+                <td class="nowrap">Rp {{ user['pembayaran_pdam'] }}</td>
+                <td class="nowrap">{{ user['debit_pelanggan'] }} m<sup>3</sup></td>
+                <td class="nowrap">Rp {{ user['pembayaran_pelanggan'] }}</td>
                 <td>
                   <a href="/admin/delete/{{ user['id_pelanggan'] }}" class="btn btn-sm btn-danger btn-rounded"
                     onclick="return confirm('Are You Sure To Delete?')">

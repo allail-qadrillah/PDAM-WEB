@@ -12,9 +12,9 @@ def dashboard():
     for person in users:
         kode_pelanggan = person['id_pelanggan']
         user.update_user(kode_pelanggan, {
-            'debit_pdam': user.get_pdam(),
+            'debit_pdam': round(user.get_pdam(), 2),
             'pembayaran_pdam': user.get_pembayaran_pdam(kode_pelanggan),
-            'debit_pelanggan': user.get_pelanggan(),
+            'debit_pelanggan': round(user.get_pelanggan(), 2),
             'pembayaran_pelanggan': user.get_pembayaran_pelanggan(kode_pelanggan)
         })
 

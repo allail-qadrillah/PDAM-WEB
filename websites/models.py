@@ -29,7 +29,6 @@ class Firebase:
     def add_collection(self, collection, document, data):
         return firestore.collection(collection).document(document).set(data)
 
-
 class User(Firebase):
     def __init__(self):
         self.user = 'user'
@@ -70,11 +69,6 @@ class User(Firebase):
 
     def update_user(self, kode_pelanggan, data):
         firestore.collection(self.user).document(kode_pelanggan).update(data)
-
-
-    # def get_kode_pelanggan(self):
-    #   data = firestore.collection(self.user).get()
-    #   return [each.to_dict()['id_pelanggan'] for each in data]
 
 
     def get_golongan(self, kode_pelanggan):
@@ -154,10 +148,3 @@ class User(Firebase):
 
     def __str__(self) -> str:
         return f'{self.username} {self.golongan} {self.bulan}'
-
-
-
-
-
-
-
