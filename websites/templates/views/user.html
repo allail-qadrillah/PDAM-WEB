@@ -34,7 +34,7 @@
       <img src="{{ user['foto_profile'] }}" style="width: 45px; height: 45px" class="rounded-circle" />
       <div class="ms-3">
         <p class="fw-bold mb-1">{{ user['nama'] }}</p>
-        <span class="badge badge-primary">{{ user['golongan'] }}</span>
+        <span id="golongan" class="badge badge-primary">{{ user['golongan'] }}</span>
       </div>
     </div>
   </div>
@@ -43,13 +43,13 @@
     <div class="hidden-right card gradient-custom ms-4" style="border-radius: 25px;">
       <div class="card-body ">
         <h6>Total Pemakaian</h6>
-        <h1 id="debit-pelanggan" class="nowrap">{{ user['debit_pelanggan'] }} m<sup>3</sup></h1>
+        <h2 id="debit-pelanggan" class="nowrap">{{ user['debit_pelanggan'] }} m<sup>3</sup></h2>
       </div>
     </div>
     <div class="hidden-right card gradient-custom ms-2" style="border-radius: 25px;">
       <div class="card-body ">
         <h6>Total Pembayaran</h6>
-        <h1 class="nowrap">Rp {{ user['pembayaran_pelanggan'] }}</h1>
+        <h2 id="total-pembayaran" class="nowrap text-break">Rp{{ user['pembayaran_pelanggan'] }}</h2>
       </div>
     </div>
   </div>

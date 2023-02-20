@@ -104,10 +104,10 @@ class User(Firebase):
 
     def count_pembayaran(self, golongan, volume_air):
         if golongan == "Rumah Tangga A":
-              if volume_air >= 0 and volume_air <= 10:
-                  return (volume_air * 2.500) + 4.500 + 3.000
-              else:
-                  return (volume_air * 3.500) + 4.500 + 3.000
+            if volume_air >= 0 and volume_air <= 10:
+                return (volume_air * 2.500) + 4.500 + 3.000
+            else:
+                return (volume_air * 3.500) + 4.500 + 3.000
 
         elif golongan == "Rumah Tangga B":
             if volume_air >= 0 and volume_air <= 10:
