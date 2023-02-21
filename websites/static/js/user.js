@@ -67,9 +67,9 @@ onValue(ref(db, '/'), (snapshot) => {
   document.getElementById('debit-pelanggan').innerHTML = `${pelanggan} m<sup>3</sup>`
   document.getElementById('total-pembayaran').innerHTML = `Rp${count_pembayaran(golongan, pelanggan).toFixed(3)}`
 
-  if (pelanggan >= 10 && pelanggan <= 20) {
-    document.getElementById('notifikasi').className = 'alert alert-warning mb-0 alert-dismissible alert-absolute fade show mt-2'
-  } else if (pelanggan >= 20) {
+
+
+  if (pelanggan >= 20) {
     document.getElementById('notifikasi').className = 'alert alert-danger mb-0 alert-dismissible alert-absolute fade show mt-2'
   } else {
     document.getElementById('notifikasi').className = 'alert alert-danger mb-0 alert-dismissible alert-absolute fade mt-2'
